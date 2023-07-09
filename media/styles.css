@@ -19,6 +19,7 @@ h1  {
     justify-content: space-around;
     align-items: center;
     gap: 10px;
+    font-size: 2vw;
 }
 
 .grid-container {
@@ -53,7 +54,7 @@ h1  {
 }
 
 button {
-    width: 80px;
+    width: 10vw;
     background-image: linear-gradient(#413839, #806f71);
     border: 1px solid black;
     border-radius: 5px;
@@ -61,12 +62,13 @@ button {
     text-shadow: 0 0 2px #413839;
     box-shadow: 0 0 2px #413839;
     animation: all 200ms ease-out;
+    font-size: 2vw;
 }
 
 button:hover {
     cursor: pointer;
-    width: 75px;
-    font-size: 12px;
+    width: 9vw;
+    font-size: 1.8vw;
     color: rgba(255, 255, 255, .8);
 }
 

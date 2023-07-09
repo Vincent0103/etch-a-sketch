@@ -18,3 +18,4 @@ TOP project: Etch-a-Sketch
 - Add ability to erase via the erase button
 - Add ability for drawing with rainbow colors via the rainbow mode button
 - improved ui with much better and attracting look
+- Fix viewport and extend up to 560px gridContainer length
