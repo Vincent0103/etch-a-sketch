@@ -24,8 +24,8 @@ h1  {
 
 .grid-container {
     display: flex;
-    height: 256px;
-    width: 256px;
+    height: 560px;
+    width: 560px;
     flex-wrap: wrap;
     box-shadow: 0 0 6px rgba(0, 0, 0, .3);
     cursor: default;

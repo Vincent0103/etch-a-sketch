@@ -67,7 +67,7 @@ function changeGridSize(gridContainer, gridLength) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-    let gridLength = 256;
+    let gridLength = 560;
 
     const gridContainer = document.querySelector(".grid-container");
 
