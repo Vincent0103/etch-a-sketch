@@ -1,0 +1,34 @@
+.page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.grid-container {
+    display: flex;
+    height: 256px;
+    width: 256px;
+    flex-wrap: wrap;
+    box-shadow: 0 0 6px rgb(53, 53, 53);
+    cursor: default;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.squares-controller-container {
+    display: flex;
+    gap: 8px;
+}
+
+.squares-controller-container > button {
+    width: 30px;
+    height: 20px;
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+.squares-controller-container > p {
+    margin: 0;
+}
