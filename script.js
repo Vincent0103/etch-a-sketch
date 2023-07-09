@@ -24,11 +24,11 @@ function paint(element, container, color) {
         }
     })
 
-    container.addEventListener("mousedown", () => {
+    document.addEventListener("mousedown", () => {
         isMousedown = true;
     })
 
-    container.addEventListener("mouseup", () => {
+    document.addEventListener("mouseup", () => {
         isMousedown = false;
     })
 }
@@ -104,7 +104,6 @@ window.addEventListener("DOMContentLoaded", () => {
     colorPickerInput.addEventListener("change", () => {
         colorChoosen = colorPickerInput.value;
         paintableDivs.forEach(div => paint(div, gridContainer, colorChoosen));
-        console.log(colorPickerInput.value)
     })
 
     paintableDivs.forEach(div => paint(div, gridContainer, colorChoosen));
