@@ -1,34 +1,65 @@
-window.addEventListener("DOMContentLoaded", () => {
-    const GRID_HEIGHT = 16;
-    const GRID_WIDTH = 16;
-    const GRID_PROPORTIONS = 256;
-    const CONTAINER_GRID_PROPORTIONS = Math.pow(256, 2);
-    const MAX_RGB_COLOR = 3;
+function paint(element, container) {
     let isMousedown = false;
+    element.addEventListener("mouseover", e => {
+        const MAX_RGB_COLOR = 3;
 
-    let randomRGBColor = Math.floor(Math.random() * 256);
-    const body = document.querySelector("body");
+        if (isMousedown) {
+            e.preventDefault();
+            let randomR;
+            let randomG;
+            let randomB;
+            for (let j = 0; j < MAX_RGB_COLOR; j++) {
+                randomR = Math.floor(Math.random() * 256);
+                randomG = Math.floor(Math.random() * 256);
+                randomB = Math.floor(Math.random() * 256);
+            }
+            element.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+        }
+    })
 
-    const gridContainer = document.querySelector(".grid-container");
-
-    for (let i = GRID_PROPORTIONS; i <= CONTAINER_GRID_PROPORTIONS; i += GRID_PROPORTIONS) {
-        const div = document.createElement("div");
-        div.style.height = "16px"
-        div.style.width = "16px";
-        // div.style.backgroundColor = `rgb(${randomRGBRed}, ${randomRGBBlue}, ${randomRGBGreen})`;
-        div.classList.add("grid");
-        gridContainer.appendChild(div);
-    }
-
-    const divs = gridContainer.querySelectorAll(".grid");
-
-    gridContainer.addEventListener("mousedown", () => {
+    container.addEventListener("mousedown", () => {
         isMousedown = true;
     })
 
-    gridContainer.addEventListener("mouseup", () => {
+    container.addEventListener("mouseup", () => {
         isMousedown = false;
     })
+}
+
+function changeGridSize(gridContainer, gridLength) {
+    // size of paintable div in square (height and width)
+    const PIXEL_PROPORTION = 16;
+
+    // remove all the old paintable divs if there is any
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+
+    gridLength = parseInt(gridLength);
+
+    gridContainer.style.height = gridLength;
+    gridContainer.style.width = gridLength;
+
+    let paintableUnitSize = gridLength / PIXEL_PROPORTION;
+
+    // add paintables divs filling in the gridContainer
+    for (let i = paintableUnitSize; i <= Math.pow((paintableUnitSize), 3); i += paintableUnitSize) {
+        const div = document.createElement("div");
+        div.style.height = "16px";
+        div.style.width = "16px";
+        div.classList.add("grid");
+        gridContainer.appendChild(div);
+    }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    let gridProportions = 256;
+
+    const gridContainer = document.querySelector(".grid-container");
+
+    changeGridSize(gridContainer, gridProportions);
+
+    let divs = gridContainer.querySelectorAll(".grid");
 
     document.addEventListener("dragstart", () => {
         return false;
@@ -37,21 +68,18 @@ window.addEventListener("DOMContentLoaded", () => {
         return false;
     });
 
-    divs.forEach(div => {
-        div.addEventListener("mouseover", e => {
-            if (isMousedown) {
-                e.preventDefault();
-                let randomRGBRed;
-                let randomRGBBlue;
-                let randomRGBGreen;
-                for (let j = 0; j < MAX_RGB_COLOR; j++) {
-                    randomRGBRed = Math.floor(Math.random() * 256);
-                    randomRGBBlue = Math.floor(Math.random() * 256);
-                    randomRGBGreen = Math.floor(Math.random() * 256);
-                }
-                div.style.backgroundColor = `rgb(${randomRGBRed}, ${randomRGBBlue}, ${randomRGBGreen})`;
-            }
+    divs.forEach(div => paint(div, gridContainer));
 
-        })
+    const gridDragController = document.getElementById("grid-drag-controller");
+    const labelController = document.getElementById("label-controller");
+
+    gridDragController.addEventListener("mouseup", e => {
+        gridContainer.style.height = `${gridDragController.value}px`;
+        gridContainer.style.width = `${gridDragController.value}px`;
+        gridProportions = gridDragController.value;
+        labelController.textContent = `${gridProportions} x ${gridProportions}`;
+        changeGridSize(gridContainer, gridProportions);
+        divs = gridContainer.querySelectorAll(".grid");
+        divs.forEach(div => paint(div, gridContainer));
     })
 });

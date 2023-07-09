@@ -1,7 +1,11 @@
+body {
+    font-family: "Inter", sans-serif;
+}
+
 .page-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .grid-container {
@@ -15,4 +19,10 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+}
+
+.grid-controller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
