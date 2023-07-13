@@ -8,10 +8,9 @@ TOP project: Etch-a-Sketch
 
 ### stuff to add
 
-- Add quadrillage
+- Add grid
 - ability to save works
 - go to previous state (Ctrl + Z)?
-- erase all btn
 
 ### changelog
 
@@ -23,3 +22,4 @@ TOP project: Etch-a-Sketch
 - improved ui with much better and attracting look
 - Fix viewport and extend up to 560px gridContainer length
 - Fix drawing glitch when cursor goes out of the gridContainer
+- Fix hover transitions not working
