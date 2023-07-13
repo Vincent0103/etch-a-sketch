@@ -9,6 +9,9 @@ TOP project: Etch-a-Sketch
 ### stuff to add
 
 - Add quadrillage
+- ability to save works
+- go to previous state (Ctrl + Z)?
+- erase all btn
 
 ### changelog
 

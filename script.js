@@ -33,6 +33,15 @@ function paint(element, container, color) {
     })
 }
 
+function eraseAll(paintableDivs) {
+    paintableDivs.forEach(div => {
+        div.style.backgroundColor = "#FFFFFF";
+        const colorPickerInput = document.querySelector("#color-picker");
+        colorChoosen = colorPickerInput.value;
+        paint(div, paintableDivs, colorChoosen);
+    })
+}
+
 function changeGridSize(gridContainer, gridLength) {
     // size of paintable div in square (height and width)
     const PIXEL_PROPORTION = 16;
@@ -93,12 +102,24 @@ window.addEventListener("DOMContentLoaded", () => {
     })
 
     const eraseButton = document.getElementById("erase-btn");
-    eraseButton.addEventListener("click", () => {
 
-        // use white color to erase
-        colorChoosen = "#FFFFFF";
+    eraseButton.addEventListener("click", e => {
+        if (eraseButton.textContent === "erase") {
+            // use white color to erase
+            colorChoosen = "#FFFFFF";
 
-        paintableDivs.forEach(div => paint(div, gridContainer, colorChoosen));
+            paintableDivs.forEach(div => paint(div, gridContainer, colorChoosen));
+            e.target.textContent = "all";
+            e.target.classList.add("disabled");
+            console.log(eraseButton);
+
+
+        } else if (eraseButton.textContent === "all") {
+            eraseAll(paintableDivs, e.target);
+            e.target.textContent = "erase";
+            e.target.classList.remove("disabled");
+
+        }
     })
 
     colorPickerInput.addEventListener("change", () => {
